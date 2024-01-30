@@ -2,7 +2,7 @@
 
 **Author:** Sathvik Shetty
 
-![Cyber Attack Visualizer](link_to_your_image_or_logo.png)
+![Cyber Attack Visualizer]
 
 ## Overview
 
