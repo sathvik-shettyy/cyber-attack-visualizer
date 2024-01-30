@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Cyber Attacks</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div id="live-cyber-attacks"></div>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Handle the initial graph creation
+        socket.on('update_graph', function(msg) {
+            var graphDiv = document.getElementById('live-cyber-attacks');
+            Plotly.newPlot(graphDiv, JSON.parse(msg.data));
+        });
+
+        // Periodically request updates
+        setInterval(function() {
+            socket.emit('update_request');
+        }, 5000);  // Update every 5 seconds
+    </script>
+</body>
+</html>
